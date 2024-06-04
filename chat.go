@@ -231,12 +231,27 @@ type StreamOptions struct {
 type ToolType string
 
 const (
-	ToolTypeFunction ToolType = "function"
+	ToolTypeFunction        ToolType = "function"
+	ToolTypeFileSearch      ToolType = "file_search"
+	ToolTypeCodeInterpreter ToolType = "code_interpreter"
 )
 
 type Tool struct {
 	Type     ToolType            `json:"type"`
 	Function *FunctionDefinition `json:"function,omitempty"`
+}
+
+type ToolResource struct {
+	FileSearch      *FileSearch      `json:"file_search,omitempty"`
+	CodeInterpreter *CodeInterpreter `json:"code_interpreter,omitempty"`
+}
+
+type FileSearch struct {
+	VectorStoreIDs []string `json:"vector_store_ids"`
+}
+
+type CodeInterpreter struct {
+	FileIDs []string `json:"file_ids"`
 }
 
 type ToolChoice struct {

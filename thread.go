@@ -34,10 +34,11 @@ const (
 )
 
 type ThreadMessage struct {
-	Role     ThreadMessageRole `json:"role"`
-	Content  string            `json:"content"`
-	FileIDs  []string          `json:"file_ids,omitempty"`
-	Metadata map[string]any    `json:"metadata,omitempty"`
+	Role        ThreadMessageRole  `json:"role"`
+	Content     string             `json:"content"`
+	FileIDs     []string           `json:"file_ids,omitempty"`
+	Metadata    map[string]any     `json:"metadata,omitempty"`
+	Attachments []ThreadAttachment `json:"attachments,omitempty"`
 }
 
 type ThreadDeleteResponse struct {
@@ -46,6 +47,11 @@ type ThreadDeleteResponse struct {
 	Deleted bool   `json:"deleted"`
 
 	httpHeader
+}
+
+type ThreadAttachment struct {
+	FileID string `json:"file_id"`
+	Tools  []Tool `json:"tools"`
 }
 
 // CreateThread creates a new thread.

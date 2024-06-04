@@ -22,6 +22,7 @@ type Message struct {
 	AssistantID *string          `json:"assistant_id,omitempty"`
 	RunID       *string          `json:"run_id,omitempty"`
 	Metadata    map[string]any   `json:"metadata"`
+	Attachments []Attachment     `json:"attachments"`
 
 	httpHeader
 }
@@ -56,6 +57,15 @@ type MessageRequest struct {
 	Content  string         `json:"content"`
 	FileIds  []string       `json:"file_ids,omitempty"` //nolint:revive // backwards-compatibility
 	Metadata map[string]any `json:"metadata,omitempty"`
+}
+
+type Attachment struct {
+	FileID string           `json:"file_id"`
+	Tools  []AttachmentTool `json:"tools"`
+}
+
+type AttachmentTool struct {
+	Type string `json:"type"`
 }
 
 type MessageFile struct {
